@@ -15,6 +15,9 @@ run-protoc=protoc --proto_path=$(PROTO_IN) --go_out=plugins=grpc:$(PROTO_OUT) $^
 
 GRPC_SERVER_FILES=grpc_interface.go grpc_handler.go
 
+deps: ## Download the project dependencies with `go get`
+	go get -v -t -d ./...
+
 tidy:
 	go mod tidy
 
