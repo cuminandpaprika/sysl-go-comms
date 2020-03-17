@@ -10,7 +10,7 @@ on:
 
 jobs:
   # This job lints the
-  golangci-lint:
+  lint:
     name: Lint
     runs-on: ubuntu-latest
     steps:
@@ -21,6 +21,8 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           golangci_lint_flags: "--config=.golangci.yml"
+          level: error
+          reporter: github-pr-review
   test:
     name: Test
     runs-on: ubuntu-latest
