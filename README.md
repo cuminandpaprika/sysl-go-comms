@@ -1,5 +1,7 @@
 # sysl-go
 
+[![codecov](https://codecov.io/gh/cuminandpaprika/sysl-go-comms/branch/master/graph/badge.svg)](https://codecov.io/gh/cuminandpaprika/sysl-go-comms)
+
 Communication library used by SYSL-generated code written in Go.
 
 ## 1.1. Getting Started
