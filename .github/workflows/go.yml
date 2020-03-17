@@ -29,9 +29,6 @@ jobs:
 
     - name: Test
       run: go test -cover -tags codeanalysis ./...
-
-    - name: Generate Test Coverage
-      run: make test-coverage
       
     - name: Publish test results to Coveralls
       uses: coverallsapp/github-action@v1.0.1
