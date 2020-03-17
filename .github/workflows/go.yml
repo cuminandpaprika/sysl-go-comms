@@ -2,11 +2,11 @@ name: Lint and Test
 # This workflow is triggered on pushes and pull requests on all branches
 on:
   push:
-    branches: 
-      - '*'
+    branches:
+      - "*"
   pull_request:
-    branches: 
-      - '*'
+    branches:
+      - "*"
 
 jobs:
   # This job lints the
@@ -27,32 +27,23 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Go 1.13
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.13
+        id: go
 
-    - name: Set up Go 1.13
-      uses: actions/setup-go@v1
-      with:
-        go-version: 1.13
-      id: go
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v2
 
-    - name: Check out code into the Go module directory
-      uses: actions/checkout@v2
+      - name: Get dependencies
+        run: go get -v -t -d ./...
 
-    - name: Get dependencies
-      run: go get -v -t -d ./...
+      - name: Test
+        run: go test -cover -tags codeanalysis -coverprofile=coverage.out ./...
 
-    - name: Test
-      run: go test -cover -tags codeanalysis -coverprofile=coverage.out ./...
-      
-    - name: Publish test results to Codecov
-      uses: codecov/codecov-action@v1.0.6
-      with: 
-        github-token: ${{ secrets.github_token }}
-        file: ./coverage.out
-    
-    - name: SonarCloud Scan
-      uses: SonarSource/sonarcloud-github-action@v1.1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-
+      - name: Publish test results to Codecov
+        uses: codecov/codecov-action@v1.0.6
+        with:
+          github-token: ${{ secrets.github_token }}
+          file: ./coverage.out
