@@ -28,7 +28,7 @@ jobs:
       run: go get -v -t -d ./...
 
     - name: Test
-      run: make test
+      run: go test -cover -tags codeanalysis ./...
 
     - name: Generate Test Coverage
       run: make coverage
