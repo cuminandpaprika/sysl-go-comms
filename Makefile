@@ -11,8 +11,6 @@ lint: ## Lint Go Source Code
 tidy:
 	go mod tidy
 
-clean: go clean ./...
-
 .PHONY: lint tidy clean
 
 # -- Test ----------------------------------------------------------------------
@@ -25,15 +23,16 @@ test:
 check-coverage: test  ## Check that test coverage meets the required level
 	@go tool cover -func=$(COVERFILE) | $(CHECK_COVERAGE) || $(FAIL_COVERAGE)
 
-cover: test  ## Show test coverage in your browser
+coverage: test  ## Show test coverage in your browser
 	go tool cover -html=$(COVERFILE)
 
-clean: rm -f $(COVERFILE)
+clean: 
+	rm -f $(COVERFILE)
 
 CHECK_COVERAGE = awk -F '[ \t%]+' '/^total:/ && $$3 < $(COVERAGE) {exit 1}'
 FAIL_COVERAGE = { echo '$(COLOUR_RED)FAIL - Coverage below $(COVERAGE)%$(COLOUR_NORMAL)'; exit 1; }
 
-.PHONY: check-coverage cover test
+.PHONY: check-coverage coverage test
 
 # --- Utilities ---------------------------------------------------------------
 COLOUR_NORMAL = $(shell tput sgr0 2>/dev/null)
