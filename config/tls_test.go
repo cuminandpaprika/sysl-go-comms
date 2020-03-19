@@ -289,11 +289,7 @@ func TestValidateInvalidTlsConfigs(t *testing.T) {
 	}
 }
 
-<<<<<<< HEAD
-//nolint:deadcode,varcheck // Disabled as we're currently skipping the tests, due to missing cert files
-=======
-//nolint:unused disabled as we're currently skipping the tests, due to missing cert files
->>>>>>> 6113d6c... Fix whynolint issues
+//nolint:deadcode,varcheck,unused // Disabled as we're currently skipping the tests due to missing cert files
 var tlsValidConfigTests = []struct {
 	in   *TLSConfig
 	name string
@@ -480,7 +476,7 @@ func TestGetTrustedCAsFromSystem(t *testing.T) {
 	}
 }
 
-//nolint:unused disabled as we're currently skipping the tests, due to missing cert files
+//nolint:deadcode,varcheck,unused // Disabled as we're currently skipping the tests due to missing cert files
 var tlsValidTLSTrustedCertPoolConfigTests = []struct {
 	in   *TrustedCertPoolConfig
 	name string
