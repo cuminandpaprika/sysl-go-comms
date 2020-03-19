@@ -10,7 +10,7 @@ func (s *DefaultDbEndpointsImpl) GetCompanyLocationList() func(ctx context.Conte
 		queryStmt := client.retrievebycompanyandlocation
 		rows, err := queryStmt.QueryContext(ctx, req.DeptLoc, req.CompanyName)
 		if err != nil {
-			fmt.Println("################ error Receied - " + err.Error())
+			fmt.Println("################ error Received - " + err.Error())
 			return nil, err
 		}
 		companiesMap := map[int64]Company{}
