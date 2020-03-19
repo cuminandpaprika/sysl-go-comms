@@ -289,6 +289,7 @@ func TestValidateInvalidTlsConfigs(t *testing.T) {
 	}
 }
 
+//nolint:deadcode,varcheck // Disabled as we're currently skipping the tests, due to missing cert files
 var tlsValidConfigTests = []struct {
 	in   *TLSConfig
 	name string

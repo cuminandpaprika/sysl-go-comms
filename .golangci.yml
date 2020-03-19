@@ -1,0 +1,62 @@
+linters-settings:
+  govet:
+    check-shadowing: true
+  golint:
+    min-confidence: 0
+  maligned:
+    suggest-new: true
+  misspell:
+    locale: UK
+  gocritic:
+    enabled-tags:
+      - performance
+      - style
+      - experimental
+    disabled-checks:
+      - sloppyReassign
+      - docStub
+      - paramTypeCombine
+
+linters:
+  enable-all: true
+  disable:
+    - dupl
+    - gochecknoglobals
+    - gocyclo
+    - goconst
+    - lll
+    - misspell
+    - wsl
+    - gomnd # Ignore magic as it seems to produce too much noise for this codebase
+
+issues:
+  exclude-rules:
+    #Ignore variable scope linting
+    - path: "errors/error_handler_test.go"
+      linters:
+        - scopelint
+    - path: "config/config_test.go"
+      linters:
+        - scopelint
+    # Ignore things like "FormId should be FormID"
+    - path: codegen
+      text: "ST1003:"
+      linters:
+        - stylecheck
+    # Ignore things like "FormId should be FormID"
+    - path: codegen
+      text: ".*should be.*"
+      linters:
+        - golint
+    
+    - path: _test\.go
+      linters:
+        - govet # Ignore err shadowing in test files
+        - gomnd 
+        - funlen # Ignore function length for tests
+
+run:
+  deadline: 2m
+  build-tags:
+    - codeanalysis
+
