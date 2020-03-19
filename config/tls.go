@@ -265,7 +265,7 @@ func MakeTLSConfig(cfg *TLSConfig) (*tls.Config, error) {
 	}
 
 	if cfg.InsecureSkipVerify {
-		//nolint:gosec
+		//nolint:gosec // This is configured by the user
 		return &tls.Config{InsecureSkipVerify: true}, nil
 	}
 
