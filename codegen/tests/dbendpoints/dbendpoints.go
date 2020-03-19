@@ -18,6 +18,10 @@ func (s *DefaultDbEndpointsImpl) GetCompanyLocationList() func(ctx context.Conte
 		var departments []Department
 		var prevAbnNum, curCompanyIndex int64
 		for rows.Next() {
+			if rows.Err() != nil {
+				fmt.Println("################ error Received - " + err.Error())
+				return nil, err
+			}
 			var abnnumber, deptid int64
 			var companyname, companycountry, deptname, deptloc string
 			_ = rows.Scan(&abnnumber, &companyname, &companycountry, &deptid, &deptname, &deptloc)
