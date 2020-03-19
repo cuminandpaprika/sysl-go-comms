@@ -327,7 +327,6 @@ func makeX509Template(organisation string) (*x509.Certificate, error) {
 	}, nil
 }
 
-//nolint:funlen
 func generateSelfSignedCert(hosts []string, organisation string, certFilename, keyFilename string) error {
 	pemBlockForKey := func(priv *ecdsa.PrivateKey) (*pem.Block, error) {
 		b, err := x509.MarshalECPrivateKey(priv)
